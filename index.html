@@ -1,0 +1,40 @@
+<!--
+* pedernal
+* 15-04-2022
+* A Noicy Night
+*
+* The HTML for the website, no much to see here, everything is on the adventure.js file
+-->
+
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="style.css"> <!--the css file that indicates the styiling of each element-->
+		<title>A Noicy Night</title>
+	</head>
+
+	<body>
+		<header> <!--the banner-->
+			<h1>
+				=============<br>
+				A Noisy Night<br>
+				=============
+			</h1>
+		</header>
+
+		<div id="main"> <!--the main element where everything is 'rendered' (apended to as the adventure advances)-->
+		</div>
+		<script src="adventure.js"></script> <!--the external script that runs the logic of the text adventure-->
+		<script>
+			orchestrator(); //the function that begins and orchestrates the text adventure
+		</script>
+
+		<button id="restart-button" onclick="location.reload()">Restart</button> <!--button to restarts the adventure... it just reloads the page-->
+		<footer>
+			Created by Lambientan under the Creative Commons license
+		</footer>
+	</body>
+</html>

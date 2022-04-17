@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>test</title>
+	</head>
+
+	<body>
+		<div id="main">
+		</div>
+		<script>
+      function foo()
+      {
+        const options = [];
+      	const groupName = "group1";
+
+      	prGenerator("Choose and option to render the next:");
+
+      	options.push(createOption("option1", groupName, 0, "Render option 1"));
+      	options.push(createOption("option2", groupName, 1, "Render option 2"));
+
+      	const lambExec = (input) => {
+      		console.log("pased input to lambExec: " + input);
+      		//FIXME: these next lines needs to run after form is submited, figure it out (hint, make it an async function and handle promisse when form out put is handeled?)
+      		const storyOption1 = "Option 1 selected: The quick brown fox jumps over the lazy dogs";
+      		const storyOption2 = "Option 2 selected: A B C D E F G H I J K L M O P Q R S T U V X Y Z";
+
+      		switch (input)
+      		{
+      			case "0": //branches out to check zach story
+      				prGenerator(storyOption1);
+      				break;
+      			case "1": //branches out to return to study room
+      				prGenerator(storyOption2);
+      				break;
+      			default:
+      				prGenerator("...No option given.");
+      				break;
+      		}
+      	};
+      	createRadioInput("form1", groupName, options, lambExec);
+      }
+
+      /**@param formName unique name for the group of input radio elements
+       * @param groupName the name of the relevant radio input elements
+       * @param options list of option object (see createOptions function) that will be used to append  to the main HTML element
+       * @param exec passed lambda to rexecute after sumition
+       * @desc given a name and an list of options, it will create and append the input radio elments into the main HTML element**/
+      function createRadioInput(formName, groupName, options, exec)
+      {
+      	let input = -1;
+      	const main = document.getElementById("main"); //getting parent HTML element to append
+      	let newForm = document.createElement("form"); //creating form
+      	newForm.action = "#"; //form's data stays on the page
+      	newForm.name = formName;
+
+      	//this function to execute after form detects subition event
+      	const handleSubmition = (event) => {
+      		const group = document.getElementsByName(groupName); //get relevant group of options
+      		for (let i = 0; i < group.length; ++i)
+      		{
+      			if (group[i].checked)
+      			{
+      				input = group[i].value;
+      				console.log("submited: " + input);
+      			}
+      			group[i].disabled = true;
+      		}
+
+      		console.log("input before passing to exec() inside handleSubmition inside createRadioInput: " + input);
+          //FIXME: Why is input not working?
+      		exec(input); //part of the story to execute after submition
+
+      		event.preventDefault(); //to avoid reloading after sumition
+      	};
+      	newForm.addEventListener("submit", handleSubmition); //add a new event listener
+
+      	options[0].input.checked = "checked"; //FIXME: maybe we don't want this... make the first option the default
+      	//innerinner function as a lambda to apply to each element in otpions
+      	const lambForEach = (current) => {
+      		newForm.appendChild(current.input);
+      		newForm.appendChild(current.label);
+      		const br = document.createElement("br");
+      		newForm.appendChild(br);
+      	};
+      	options.forEach(lambForEach); //append option
+
+      	//appending the submit element
+      	const submit = document.createElement("input");
+      	submit.name = groupName;
+      	submit.type = "submit";
+      	submit.value = "Continue";
+      	newForm.appendChild(submit);
+
+      	main.appendChild(newForm);
+      }
+
+      /**@param id the ID for the input
+       * @param name name for the radio input
+       * @param value the value to be returned if slected
+       * @param text the inner text for the label of input
+       * @desc helper function to create user input of type radio*/
+      function createOption(id, name, value, text)
+      {
+      	//creating the input radio element
+      	let newInput = document.createElement("input");
+      	newInput.type = "radio";
+      	newInput.id = id;
+      	newInput.name = name;
+      	newInput.value = value;
+
+      	//creating the lable
+      	let newLabel = document.createElement("label");
+      	newLabel.for = id;
+      	newLabel.innerHTML = text;
+
+      	return {input: newInput, label: newLabel};
+      }
+
+      /**@param str string to display on the website
+       * @desc automatizes the creation of pr elements*/
+      function prGenerator(str)
+      {
+      	const main = document.getElementById("main");
+      	const pr = document.createElement("p");
+      	pr.innerHTML = str;
+      	main.appendChild(pr);
+      }
+		</script>
+    <script>foo()</script>
+    <footer>
+      this is a footer
+    </footer>
+	</body>
+
+</html>

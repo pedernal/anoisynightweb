@@ -1,0 +1,112 @@
+@font-face {
+	font-family: "pixelated";
+	src: url("./data/modeseven.ttf");
+}
+
+* {
+	font-family: pixelated, bedrock, helvetica;
+	color: #1cce28;
+	background-color: #000000;
+}
+
+#main {
+	max-width: 600pt;
+	padding-left: 16pt;
+	padding-right: 16pt;*/
+}
+
+h1 {
+	text-align: center;
+	max-width: 600pt;
+	margin-bottom: 16pt;
+	margin-top: 16pt;
+}
+
+form {
+	margin-bottom: 16pt;
+}
+
+p {
+	text-indent: 16pt;
+	margin-bottom: 16pt;
+}
+
+/*formating for the button*/
+button {
+	display: block;
+	width: 80pt;
+	height: auto;
+	margin-left: auto;
+	margin-right: 16pt;
+	text-align: center;
+	font-size: 16pt;
+	margin-top: 2pt;
+	border: 2pt solid #1cce28;
+}
+button:hover {
+	border: 2pt solid #cebf1c;
+	color: #1cce28;
+}
+button:active {
+	border: 2pt solid #cebf1c;
+	color: #cebf1c;
+}
+
+/*formating for parts aand types of paragraph*/
+#prompt {
+	text-indent: 0pt;
+	margin-bottom: 1pt;
+}
+#segment_begining {
+	text-indent: 16pt;
+	margin-bottom: -11pt;
+}
+#segment {
+	text-indent: 0pt;
+	margin-bottom: -11pt;
+}
+#segment_end {
+	text-indent: 0pt;
+	margin-bottom: 16pt;
+}
+#dialog {
+	text-indent: 0pt;
+	margin-bottom: 16pt;
+}
+#err-rep {
+	text-indent: 0pt;
+	margin-bottom: 16pt;
+	color: #ce2b1c;
+}
+
+input[type="radio"] {
+	margin-bottom: 1pt;
+}
+input[type="submit"] {
+	margin-top: 2pt;
+	border: 2pt solid #1cce28;
+}
+input[type="submit"]:hover {
+	border: 2pt solid #cebf1c;
+	color: #1cce28;
+}
+input[type="submit"]:active {
+	border: 2pt solid #cebf1c;
+	color: #cebf1c;
+}
+input[type="submit"]:disabled {
+	border: 2pt dashed #1cce28;
+	color: #1cce28;
+}
+
+footer {
+	max-width: 616pt;
+	text-align: center;
+	font-size: 8pt;
+	margin-top: 16pt;
+	padding-top: 8pt;
+	padding-bottom: 8pt;
+	border: solid;
+	border-width: 2pt;
+	border-color: #1cce28;
+}
